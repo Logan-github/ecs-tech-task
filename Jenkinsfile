@@ -44,13 +44,6 @@ pipeline {
                 '''
             }
         }
-    stage ('Deploy') {
-        steps {
-            sh 'scp ./scripts/deploy_image.sh ${REMOTE_USER}@${REMOTE_HOST}:~/'
-            sh 'ssh ${REMOTE_USER}@${REMOTE_HOST} -i docker-instane.pem "chmod +x deploy_image.sh"'
-            sh 'ssh ${REMOTE_USER}@${REMOTE_HOST} -i docker-instance.pem ./deploy_image.ssh'
-        }
-    }
     stage('Service Health Check') {
             steps {
                 sh './scripts/health_check.sh'
