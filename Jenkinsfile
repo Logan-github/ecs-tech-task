@@ -1,6 +1,6 @@
 registryHost = "<registry-URL>"
 buildContainerVersion = "1.0"
-imageName = "demo-app"
+imageName = "demo-ecs-task-image"
 fullImageName = registryHost + "/" + imageName
 versionedImage = fullImageName  + ":" + buildContainerVersion
 REMOTE_USER=ec2-user
@@ -27,7 +27,7 @@ pipeline {
 		stage("Push Docker image") {
             steps {
                 script {
-                    docker.withRegistry("https://"+ registryHost,'demo-task'){
+                    docker.withRegistry("https://"+ registryHost,'demo-ecs-task'){
                       sh """
                           docker push ${versionedImage}
                         """
@@ -54,11 +54,6 @@ pipeline {
     stage('Service Health Check') {
             steps {
                 sh './scripts/health_check.sh'
-            }
-        }
-    stage('Test Stages') {
-            steps {
-                //sh "./scripts/test_scripts.sh"
             }
         }
 }

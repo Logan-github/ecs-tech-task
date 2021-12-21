@@ -99,8 +99,8 @@ start ecs
 
 # Custom userdata script code
 echo "Starting to deploy docker image.."
-DOCKER_IMAGE=<registry-url>/demo-app:<version-number>
-CONTAINER_NAME=demo-app-nginx
+DOCKER_IMAGE=<registry-url>/demo-ecs-task-image:<version-number>
+CONTAINER_NAME=demo-nginx-ecs-task
 docker pull $DOCKER_IMAGE
 docker ps -q --filter ancestor=$DOCKER_IMAGE | xargs docker stop
 docker container run --name $CONTAINER_NAME -p 80:80 -dit $DOCKER_IMAGE
