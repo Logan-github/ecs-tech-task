@@ -16,7 +16,7 @@ pipeline {
                     git config --global user.email = "abc@email.com"
                     git config --global http.sslVerify false
                 '''
-                sh "git clone --recurse-submodules https://github.com/Logan-github/demo-task.git"
+                sh "git clone --recurse-submodules https://github.com/Logan-github/ecs-tech-task.git"
             }
         }
         stage('Build Docker image') {
